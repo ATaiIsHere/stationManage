@@ -7,8 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<input type="submit" value="返回"><input type="submit" value="新增"><br>
-	<a>站點名稱</a><input type="text" name="nurse_id"><br>
+	<form action="./">
+		<input type="submit" value="返回">
+	</form>
+	<input type="submit" value="新增"><br>
+	<a>站點名稱</a>
+	<input type="text" name="nurse_id"><br>
 	<a>站點護士列表</a>
 </body>
 </html>

@@ -7,7 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<input type="submit" value="返回">
+	<%=request.getAttribute("abc")%>
+	<form action="./">
+		<input type="submit" value="返回">
+	</form>
+
 	<table>
 		<tr>
 			<th>員編</th>
