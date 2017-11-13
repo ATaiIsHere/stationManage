@@ -1,20 +1,20 @@
 package db;
 
 public class TNurse {
-	private int nurse_id;
+	private Long nurse_id;
     private String name;
-    private java.sql.Timestamp timestamp;
+    private java.sql.Timestamp addtime;
  
     // 必須要有一個預設的建構方法
     // 以使得Hibernate可以使用Constructor.newInstance()建立物件
     public TNurse() {
     }
 
-    public int getId() {
+    public Long getNurse_id() {
         return nurse_id;
     }
 
-    public void setId(int nurse_id) {
+    public void setNurse_id(Long nurse_id) {
         this.nurse_id = nurse_id;
     }
 
@@ -26,11 +26,11 @@ public class TNurse {
         this.name = name;
     }
  
-    public java.sql.Timestamp getTimeStamp() {
-        return timestamp;
+    public java.sql.Timestamp getAddtime() {
+        return addtime;
     }
 
-    public void setTimeStamp(java.sql.Timestamp timestamp) {
-        this.timestamp = timestamp;
+    public void setAddtime(java.sql.Timestamp addtime) {
+        this.addtime = addtime;
     }
 }

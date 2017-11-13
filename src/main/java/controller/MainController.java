@@ -58,7 +58,7 @@ public class MainController {
 			nurse.setName("ATai"); 
 			java.util.Date now = new java.util.Date();
 			java.sql.Timestamp sqlDate = new java.sql.Timestamp(now.getTime());
-			nurse.setTimeStamp(sqlDate); 
+			nurse.setAddtime(sqlDate); 
 	        // 開啟Session，相當於開啟JDBC的Connection
 	        Session session = HibernateUtil.getSessionFactory().openSession();
 	        System.out.println("開啟完成");
@@ -71,7 +71,7 @@ public class MainController {
 	        
 	        HibernateUtil.shutdown();
 			
-			return "nurse_edit";
+			return "menu";
 		}
 		else {
 			// EDIT NURSE DATA

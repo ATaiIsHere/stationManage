@@ -23,7 +23,7 @@
 		<property name="connection.password">0975002652</property>
 
 		<!-- 以下設置物件與資料庫表格映射文件 -->
-		<mapping resource="db/TNurse.hbm.xml" />
+		<mapping resource="db/CNurse.hbm.xml" />
 	</session-factory>
 
 </hibernate-configuration>
