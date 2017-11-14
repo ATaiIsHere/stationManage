@@ -15,7 +15,7 @@
 
 		<property name="station_id" column="station_id" />
 
-		<property name="timestamp" column="timestamp" />
+		<property name="addtime" column="addtime" />
 
 	</class>
 

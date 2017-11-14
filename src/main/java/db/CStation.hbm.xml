@@ -13,7 +13,7 @@
 
 		<property name="name" column="name" />
 
-		<property name="timestamp" column="timestamp" />
+		<property name="addtime" column="addtime" />
 
 	</class>
 
