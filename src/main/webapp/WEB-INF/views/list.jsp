@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%=request.getAttribute("abc")%>
 	<form action="./">
 		<input type="submit" value="返回">
 	</form>

@@ -7,7 +7,7 @@
 <title>MENU</title>
 </head>
 <body>
-	<a href="/stationManage/views/Main/station_edit">新增站點</a><br>
+	<a href="/stationManage/views/Main/station_edit?station_id=0">新增站點</a><br>
 	<a href="/stationManage/views/Main/station_list">站點列表</a><br>
 	<a href="/stationManage/views/Main/nurse_edit?nurse_id=0">新增護士</a><br>
 	<a href="/stationManage/views/Main/nurse_list">護士列表</a><br>

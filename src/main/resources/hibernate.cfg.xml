@@ -24,6 +24,8 @@
 
 		<!-- 以下設置物件與資料庫表格映射文件 -->
 		<mapping resource="db/CNurse.hbm.xml" />
+		<mapping resource="db/CStation.hbm.xml" />
+		<mapping resource="db/CAssignment.hbm.xml" />
 	</session-factory>
 
 </hibernate-configuration>
