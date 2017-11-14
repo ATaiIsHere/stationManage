@@ -13,7 +13,7 @@
 	<form action="station_add" method="POST">
 		<input type="submit" name="edit_button" value="<%=request.getAttribute("button_value")%>">
 		<br>
-		<a>站點名稱</a><input type="text" name="name">
+		<a>站點名稱</a><input type="text" name="name" value="<%=request.getAttribute("name")%>">
 	</form>
 
 	<br>

@@ -13,8 +13,8 @@
 	</form>
 	<form action="nurse_add" method="POST">
 		<input type="submit" name="edit_button" value="<%=request.getAttribute("button_value")%>" >	
-		<a>員工編號</a><input type="text" name="nurse_id"><br>
-		<a>護士姓名</a><input type="text" name="name"><br>
+		<a>員工編號</a><input type="text" name="nurse_id" value="<%=request.getAttribute("nurse_id")%>"><br>
+		<a>護士姓名</a><input type="text" name="name" value="<%=request.getAttribute("name")%>"><br>
 		<a>分配站點</a>
 		<div>
 			<div style="float">

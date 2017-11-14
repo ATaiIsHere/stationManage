@@ -1,7 +1,7 @@
 package db;
 
 public class TStation {
-	private int station_id;
+	private Long station_id;
 	private String name;
 	private java.sql.Timestamp addtime;
 
@@ -10,11 +10,11 @@ public class TStation {
 	public TStation() {
     }
 
-	public int getStation_id() {
+	public Long getStation_id() {
 		return station_id;
 	}
 
-	public void setStation_id(int station_id) {
+	public void setStation_id(Long station_id) {
 		this.station_id = station_id;
 	}
 

@@ -13,9 +13,11 @@
 
 	<table>
 		<tr>
-			<th>員編</th>
+			<th><%=request.getAttribute("listype_id")%></th>
+			<th>名稱</th>
 			<th>修改時間</th>
 			<th>動作</th>
+			<%=request.getAttribute("showlist")%>
 		</tr>
 	</table>
 </body>
