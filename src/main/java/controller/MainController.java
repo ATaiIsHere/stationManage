@@ -64,13 +64,24 @@ public class MainController {
 		return "list";
 	}
 	
-	@RequestMapping(value = "/nurse_edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/nurse_edit")
 	public String nurseEdit(ModelMap model, @RequestParam Long nurse_id) {
 		//model.addAttribute("message", "Hi , Spring 3 MVC Hello World");
 		if (nurse_id == 0) {
 			model.addAttribute("button_value", "Add");
 			model.addAttribute("nurse_id", "");
 			model.addAttribute("name", "");
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			List stationlist = session.createQuery("from TStation").getResultList();
+			session.clear();
+			String assigned = new String("");
+			String stationpool = new String("");
+			for(Iterator it = stationlist.iterator(); it.hasNext(); ) {
+				TStation station = (TStation) it.next();
+				stationpool += "<option name=\"stationpool\" value=\"" + station.getStation_id().toString() + "-" + station.getName() + "\">" + station.getStation_id().toString() + "-" + station.getName() + "</option>";
+	        }
+			model.addAttribute("assigned", assigned);
+			model.addAttribute("stationpool", stationpool);
 		}
 		else {
 			model.addAttribute("button_value", "Edit");
@@ -79,12 +90,33 @@ public class MainController {
 			TNurse nurse = (TNurse)nurselist.get(0);
 			model.addAttribute("nurse_id", nurse.getNurse_id().toString());
 			model.addAttribute("name", nurse.getName());
+			List stationlist = session.createQuery("from TStation").getResultList();
+			List assignedlist = session.createQuery("from TAssignment where nurse_id="+nurse.getNurse_id().toString()).getResultList();
+			session.clear();
+			String assigned = new String("");
+			String stationpool = new String("");
+			for(Iterator sit = stationlist.iterator(); sit.hasNext(); ) {
+				TStation station = (TStation) sit.next();
+				Boolean have = new Boolean("False");
+				for(Iterator ait = assignedlist.iterator(); ait.hasNext(); ) {
+					TAssignment assignment = (TAssignment) sit.next();
+					if(station.getStation_id() == assignment.getStation_id()) {
+						have = new Boolean("True");
+						break;
+					}
+				}
+				if(have)
+					assigned += "<option name=\"assigned\" value=\"" + station.getStation_id().toString() + "-" + station.getName() + "\">" + station.getStation_id().toString() + "-" + station.getName() + "</option>";
+				else
+					stationpool += "<option name=\"stationpool\" value=\"" + station.getStation_id().toString() + "-" + station.getName() + "\">" + station.getStation_id().toString() + "-" + station.getName() + "</option>";
+	        }
+			model.addAttribute("assigned", assigned);
+			model.addAttribute("stationpool", stationpool);
 		}
-			
 		return "nurse_edit";
 	}
 	
-	@RequestMapping(value = "/station_edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/station_edit")
 	public String stationEdit(ModelMap model, @RequestParam Long station_id) {
 		if (station_id == 0) {
 			model.addAttribute("button_value", "Add");
@@ -102,7 +134,8 @@ public class MainController {
 	}
 	
 	@RequestMapping(value = "/nurse_add", method = RequestMethod.POST)
-	public ModelAndView nurseAdd(ModelMap model, @RequestParam String edit_button, @RequestParam String name) {
+	public ModelAndView nurseAdd(ModelMap model, @RequestParam String edit_button, @RequestParam String name, 
+			@RequestParam("assigned") String[] assigned, @RequestParam("stationpool") String[] stationpool) {
 		if(edit_button.equals("Add")) {
 			TNurse nurse = new TNurse(); 
 			nurse.setName(name); 
@@ -115,7 +148,9 @@ public class MainController {
 	        session.save(nurse);
 	        tx.commit(); 
 	        session.close();
-	        
+	        System.out.println("=======================================");
+	        System.out.println(assigned[0]);
+	        System.out.println(stationpool[1]);
 		}
 		else {
 
