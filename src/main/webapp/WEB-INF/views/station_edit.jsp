@@ -12,11 +12,11 @@
 	</form>
 	<form action="station_add" method="POST">
 		<input type="submit" name="edit_button" value="<%=request.getAttribute("button_value")%>">
+		<input type="hidden" name="station_id" value="">
 		<br>
 		<a>站點名稱</a><input type="text" name="name" value="<%=request.getAttribute("name")%>">
 	</form>
-
 	<br>
-	<a>站點護士列表</a>
+	<%=request.getAttribute("showlist") %>
 </body>
 </html>
