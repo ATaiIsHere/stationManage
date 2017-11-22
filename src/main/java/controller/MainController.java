@@ -14,9 +14,8 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
+
 
 
 @Controller
@@ -98,11 +97,11 @@ public class MainController {
 			String stationpool = new String("");
 			for(Iterator sit = stationlist.iterator(); sit.hasNext(); ) {
 				TStation station = (TStation) sit.next();
-				Boolean have = new Boolean("False");
+				Boolean have = Boolean.FALSE;
 				for(Iterator ait = assignedlist.iterator(); ait.hasNext(); ) {
 					TAssignment assignment = (TAssignment) ait.next();
 					if(station.getStation_id() == assignment.getStation_id()) {
-						have = new Boolean("True");
+						have = Boolean.TRUE;
 						break;
 					}
 				}
@@ -171,7 +170,7 @@ public class MainController {
 	        		assignment.setStation_id(station_id);
 	        		assignment.setNurse_id(Long.valueOf(nurse_id));
 	        		assignment.setAddtime(new java.sql.Timestamp(new java.util.Date().getTime()));
-	        		assignment.setExpired(new Boolean("False"));
+	        		assignment.setExpired(Boolean.FALSE);
 	        		session.save(assignment);
 	        	}
 	        }
@@ -191,7 +190,6 @@ public class MainController {
 					continue;
 				String[] station_info = station.split("-");
 				Long station_id = Long.valueOf(station_info[0]);
-				String station_name = station_info[1];
 				int j=0;
 				for(TAssignment assignment:assignedlist) {
 					if(station_id == assignment.getStation_id()) {
@@ -206,7 +204,7 @@ public class MainController {
 	        		assignment.setStation_id(station_id);
 	        		assignment.setNurse_id(Long.valueOf(nurse_id));
 	        		assignment.setAddtime(new java.sql.Timestamp(new java.util.Date().getTime()));
-	        		assignment.setExpired(new Boolean("False"));
+	        		assignment.setExpired(Boolean.FALSE);
 	        		session.save(assignment);
 				}
 				i++;
@@ -217,6 +215,7 @@ public class MainController {
 					session.createQuery("update TAssignment set expired=1 where nurse_id="+nurse_id+" and station_id="+assignment.getStation_id()).executeUpdate();
 				}
 			}
+			tx.commit();
 		}
 		session.close();
 		return new ModelAndView("redirect:nurse_list");
